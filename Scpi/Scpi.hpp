@@ -1,12 +1,10 @@
 #ifndef SCPI_HPP
 #define SCPI_HPP
 
+#include <sstream>
 #include <string>
 #include <vector>
 
-// subsystem:command paramters
-// DLQUEUE:MAXTHREADS 123
-// DLQUEUE:MAXTHREADS?
 class Scpi
 {
 public:
@@ -28,7 +26,19 @@ public:
   void setSubSystem(const std::vector<std::string>& val);
 
   template <typename T>
-  bool getParam(T& retval, unsigned int index) const;
+  bool getParam(T& retval, unsigned int index) const
+  {
+    if (index >= getParams().size())
+      return false;
+
+    auto tempStr = getParams().at(index);
+    std::istringstream iss(tempStr);
+
+    iss >> retval;
+    if (iss.fail())
+      return false;
+    return true;
+  }
 
 private:
   std::string mScpiStr;
