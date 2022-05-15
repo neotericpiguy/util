@@ -58,20 +58,3 @@ void Scpi::setSubSystem(const std::vector<std::string>& val)
   mSubsystem = val;
 }
 
-template <typename T>
-bool Scpi::getParam(T& retval, unsigned int index) const
-{
-  if (index >= getParams().size())
-    return false;
-
-  auto tempStr = getParams().at(index);
-  std::istringstream iss(tempStr);
-
-  iss >> retval;
-  if (iss.fail())
-    return false;
-  return true;
-}
-template bool Scpi::getParam<int>(int& retval, unsigned int index) const;
-template bool Scpi::getParam<std::string>(std::string& retval, unsigned int index) const;
-template bool Scpi::getParam<unsigned int>(unsigned int& retval, unsigned int index) const;
