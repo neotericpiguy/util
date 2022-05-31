@@ -53,7 +53,7 @@ const std::vector<std::string>& Scpi::getSubsystems() const
 {
   return mSubsystem;
 }
-void Scpi::setSubSystem(const std::vector<std::string>& val)
+void Scpi::setSubSystems(const std::vector<std::string>& val)
 {
   mSubsystem = val;
 }

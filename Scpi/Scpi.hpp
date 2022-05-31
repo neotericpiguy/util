@@ -11,7 +11,7 @@ public:
   Scpi(const std::string& scpi);
   Scpi(const Scpi&) = delete;
   Scpi& operator=(const Scpi& env) = delete;
-  ~Scpi();
+  virtual ~Scpi();
 
   const std::string& getScpiStr() const;
   void setScpiStr(const std::string& val);
@@ -23,7 +23,7 @@ public:
   void setCommand(const std::string& val);
 
   const std::vector<std::string>& getSubsystems() const;
-  void setSubSystem(const std::vector<std::string>& val);
+  void setSubSystems(const std::vector<std::string>& val);
 
   template <typename T>
   bool getParam(T& retval, unsigned int index) const
